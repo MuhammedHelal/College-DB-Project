@@ -92,10 +92,14 @@ public class AdminInteractions extends javax.swing.JFrame {
         );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 =======
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 1070, 600));
 >>>>>>> bfed059551517c27791acb299e3352963cc38f0a
+=======
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
+>>>>>>> 17c63da7d055efab062743e120c51145c6e82d70
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 
         pack();
