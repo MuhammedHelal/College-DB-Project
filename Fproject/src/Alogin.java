@@ -143,7 +143,7 @@ public class Alogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-            String query = "SELECT ID,Password from ADMIN WHERE ID LIKE '%" + ID.getText() + "%'";
+            String query = "SELECT ID,Password from ADMIN WHERE ID='"+ID.getText()+"'";
             PreparedStatement st = conn.prepareStatement(query);
             ResultSet result = st.executeQuery();
             if (result.next()) {
