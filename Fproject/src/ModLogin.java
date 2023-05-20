@@ -4,8 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -15,18 +13,15 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author DELL
+ * @author mohamed
  */
-public class Alogin extends javax.swing.JFrame {
-
-    public static String LoggedInAdmin;
+public class ModLogin extends javax.swing.JFrame {
 
     /**
-     * Creates new form Alogin
+     * Creates new form ModLogin
      */
-    public Alogin() {
+    public ModLogin() {
         initComponents();
-        this.setResizable(false);
     }
 
     /**
@@ -45,17 +40,15 @@ public class Alogin extends javax.swing.JFrame {
         ID = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0,80));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0,80));
 
         jLabel2.setFont(new java.awt.Font("Goudy Old Style", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Admin Login");
+        jLabel2.setText("Moderator Login");
 
         IDa.setFont(new java.awt.Font("Goudy Old Style", 1, 18)); // NOI18N
         IDa.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,8 +119,22 @@ public class Alogin extends javax.swing.JFrame {
                 .addGap(53, 53, 53))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 380, 380));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 1070, 610));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,25 +150,23 @@ public class Alogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-            String query = "SELECT ID,Password from ADMIN WHERE ID='"+ID.getText()+"'";
+            String query = "SELECT ID,Password from MODERATOR WHERE ID ='" + ID.getText() + "'";
             PreparedStatement st = conn.prepareStatement(query);
             ResultSet result = st.executeQuery();
             if (result.next()) {
-                LoggedInAdmin = ID.getText();
                 String dp = result.getString("Password").trim();
                 String EnteredPassword = Password.getText().trim();
                 if (dp.equals(EnteredPassword)) {
-                    AdminInteractions AdminINTFrame = new AdminInteractions();
                     setVisible(false);
-                    AdminINTFrame.setVisible(true);
+                    ModInteractions obj = new ModInteractions();
+                    obj.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "ID or Password or both is incorrect");
+                    JOptionPane.showMessageDialog(this, "Password is incorrect");
                     st.close();
                     conn.close();
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -182,20 +187,20 @@ public class Alogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Alogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Alogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Alogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Alogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Alogin().setVisible(true);
+                new ModLogin().setVisible(true);
             }
         });
     }
@@ -206,7 +211,6 @@ public class Alogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField Password;
     private javax.swing.JLabel Passworda;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
