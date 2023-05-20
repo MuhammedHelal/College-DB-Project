@@ -26,4 +26,4 @@ replay_pid*
 /Fproject/build/
 
 # Mohamed Ashraf custom ignores
-Database/derby.log
+/Database/derby.log

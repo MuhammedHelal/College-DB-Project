@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+=======
+>>>>>>> bfed059551517c27791acb299e3352963cc38f0a
 
 public class AdminInteractions extends javax.swing.JFrame {
 
