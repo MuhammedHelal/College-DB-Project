@@ -485,7 +485,39 @@ public class AdminInteractions extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             
-        }  else {}
+        }  else {
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+                String sql = "SELECT c.phone,w.balance FROM coustmer c INNER JOIN wallet w ON c.phone = w.phone WHERE w.balance < ALL (SELECT w2.BALANCE from wallet w2 where w2.phone <> c.phone)";
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                meta = rs.getMetaData();
+                columnCount = meta.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(meta.getColumnName(i));
+            }
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
+                }
+                model.addRow(row);
+            }
+            table.setModel(model);
+            JFrame frame = new JFrame("ALL Query");
+            frame.getContentPane().add(new JScrollPane(table));
+            frame.pack();
+            frame.setVisible(true);
+            // Close the connection and statement
+            rs.close();
+            st.close();
+            conn.close();
+            
+        
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
