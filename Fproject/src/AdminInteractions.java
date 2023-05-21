@@ -134,6 +134,77 @@ public class AdminInteractions extends javax.swing.JFrame {
         EditAccount obj = new EditAccount();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+ private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       String selectedItem = (String) jComboBox1.getSelectedItem();
+    if (selectedItem.equals("Sum")) {
+           if (selectedItem.equals("Sum")) {
+        try {    
+    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+        String sql = "SELECT SUM(DOUBLE(BALANCE)) FROM WALLET";
+        Statement pstat = conn.createStatement();
+        ResultSet rs = pstat.executeQuery(sql);
+        if (rs.next()) {      
+            double totalBalance = rs.getDouble(1);
+            jTextField1.setText("Sum of balance = " + "(" + totalBalance + ")");
+        }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }}
+    else if (selectedItem.equals("Average")) {
+           if (selectedItem.equals("Average")) {
+        try {    
+    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+        String sql = "SELECT AVG(DOUBLE(BALANCE)) FROM WALLET";
+        Statement pstat = conn.createStatement();
+        ResultSet rs = pstat.executeQuery(sql);
+        if (rs.next()) {      
+            double averageBalance = rs.getDouble(1);
+            jTextField1.setText("Average of balance= " + "(" + averageBalance + ")");
+        }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }}
+    else if (selectedItem.equals("Maximum")) {
+           if (selectedItem.equals("Maximum")) {
+        try {    
+    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+        String sql = "SELECT MAX(DOUBLE(BALANCE)) FROM WALLET";
+        Statement pstat = conn.createStatement();
+        ResultSet rs = pstat.executeQuery(sql);
+        if (rs.next()) {      
+            double MaximumBalance = rs.getDouble(1);
+            jTextField1.setText("Maximum balance= " + "(" + MaximumBalance + ")");
+        }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }}
+    else if (selectedItem.equals("Minimum")) {
+           if (selectedItem.equals("Minimum")) {
+        try {    
+    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+        String sql = "SELECT MIN(DOUBLE(BALANCE)) FROM WALLET";
+        Statement pstat = conn.createStatement();
+        ResultSet rs = pstat.executeQuery(sql);
+        if (rs.next()) {      
+            double MinimumBalance = rs.getDouble(1);
+            jTextField1.setText("Minimum balance= " + "(" + MinimumBalance + ")");
+        }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }}
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String phone = JOptionPane.showInputDialog("Enter Phone Number:");
