@@ -3,11 +3,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +30,6 @@ public class AdminInteractions extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -41,7 +43,7 @@ public class AdminInteractions extends javax.swing.JFrame {
         Vname1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,12 +59,6 @@ public class AdminInteractions extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -158,9 +154,9 @@ public class AdminInteractions extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -171,25 +167,6 @@ public class AdminInteractions extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(178, 178, 178)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(67, 67, 67)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(34, 34, 34)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -207,7 +184,24 @@ public class AdminInteractions extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(Vcolumns, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)))))
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(67, 67, 67)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(412, 412, 412)
@@ -231,15 +225,13 @@ public class AdminInteractions extends javax.swing.JFrame {
                         .addGap(114, 114, 114)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(94, 94, 94)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -272,9 +264,6 @@ public class AdminInteractions extends javax.swing.JFrame {
         EditAccount obj = new EditAccount();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
- private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-     // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String selectedItem = (String) jComboBox1.getSelectedItem();
@@ -424,78 +413,84 @@ public class AdminInteractions extends javax.swing.JFrame {
     }//GEN-LAST:event_Vname1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        
         String selectedItem = (String) jComboBox2.getSelectedItem();
         JTable table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
+        ResultSetMetaData meta;
+        int columnCount;
         if (selectedItem.equals("IN")) {
             try {
                 Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-                String sql = "SELECT SUM(DOUBLE(BALANCE)) FROM WALLET";
+                String sql = "SELECT ID,name,Email from Admin Where Email IN (Select Email from COUSTMER)";
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                if (rs.next()) {
-                    double totalBalance = rs.getDouble(1);
-                    jTextField1.setText("Sum of balance = " + "(" + totalBalance + ")");
+                meta = rs.getMetaData();
+                columnCount = meta.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(meta.getColumnName(i));
+            }
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
                 }
-                conn.close();
+                model.addRow(row);
+            }
+
+            table.setModel(model);
+
+            JFrame frame = new JFrame("IN Query");
+            frame.getContentPane().add(new JScrollPane(table));
+            frame.pack();
+            frame.setVisible(true);
+            // Close the connection and statement
+            rs.close();
+            st.close();
+            conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
 
-        } else if (selectedItem.equals("Average")) {
-            if (selectedItem.equals("Average")) {
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-                    String sql = "SELECT AVG(DOUBLE(BALANCE)) FROM WALLET";
-                    Statement pstat = conn.createStatement();
-                    ResultSet rs = pstat.executeQuery(sql);
-                    if (rs.next()) {
-                        double averageBalance = rs.getDouble(1);
-                        jTextField1.setText("Average of balance= " + "(" + averageBalance + ")");
-                    }
-                    conn.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+        } else if (selectedItem.equals("ANY")) {
+           try {
+                Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
+                String sql = "SELECT DISTINCT c.phone,w.balance FROM coustmer c INNER JOIN wallet w ON c.phone = w.phone WHERE w.balance = ANY ( SELECT w2.balance FROM wallet w2 GROUP BY w2.balance HAVING COUNT(DISTINCT w2.phone) > 1) ORDER BY w.balance ASC";
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                meta = rs.getMetaData();
+                columnCount = meta.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(meta.getColumnName(i));
             }
-        } else if (selectedItem.equals("Maximum")) {
-            if (selectedItem.equals("Maximum")) {
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-                    String sql = "SELECT MAX(DOUBLE(BALANCE)) FROM WALLET";
-                    Statement pstat = conn.createStatement();
-                    ResultSet rs = pstat.executeQuery(sql);
-                    if (rs.next()) {
-                        double MaximumBalance = rs.getDouble(1);
-                        jTextField1.setText("Maximum balance= " + "(" + MaximumBalance + ")");
-                    }
-                    conn.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+            while (rs.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = rs.getObject(i);
                 }
+                model.addRow(row);
             }
-        } else if (selectedItem.equals("Minimum")) {
-            if (selectedItem.equals("Minimum")) {
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-                    String sql = "SELECT MIN(DOUBLE(BALANCE)) FROM WALLET";
-                    Statement pstat = conn.createStatement();
-                    ResultSet rs = pstat.executeQuery(sql);
-                    if (rs.next()) {
-                        double MinimumBalance = rs.getDouble(1);
-                        jTextField1.setText("Minimum balance= " + "(" + MinimumBalance + ")");
-                    }
-                    conn.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+
+            table.setModel(model);
+
+            JFrame frame = new JFrame("ANY Query");
+            frame.getContentPane().add(new JScrollPane(table));
+            frame.pack();
+            frame.setVisible(true);
+            // Close the connection and statement
+            rs.close();
+            st.close();
+            conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-        }
+            
+        }  else {}
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     public boolean searchPhone(String phone) {
         Connection conn;
@@ -564,6 +559,5 @@ public class AdminInteractions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

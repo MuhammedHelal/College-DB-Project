@@ -190,7 +190,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/E-Wallet", "root", "root");
-            String query = "SELECT Phone,Password from COUSTMER WHERE Phone LIKE '%" + Phone.getText() + "%'";
+            String query = "SELECT Phone,Password from COUSTMER WHERE Phone='"+Phone.getText()+"'";
             PreparedStatement st = conn.prepareStatement(query);
             ResultSet result = st.executeQuery();
             loggedInUser = Phone.getText();
