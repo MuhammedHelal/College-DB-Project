@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\mohamed\Desktop\College-DB-Project\Database
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun May 21 05:04:11 AST 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Sun May 21 05:04:11 AST 2023:
+Shutting down instance a816c00e-0188-3c0a-8b8e-ffffbf8a8293 on database directory C:\Users\mohamed\Desktop\College-DB-Project\Database\E-wallet with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
+----------------------------------------------------------------
